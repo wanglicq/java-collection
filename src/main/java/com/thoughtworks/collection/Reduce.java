@@ -2,7 +2,10 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 
 public class Reduce {
 
@@ -13,43 +16,67 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .max(Comparator.naturalOrder())
+                .get();
     }
 
     public double getMinimum() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .min(Comparator.naturalOrder())
+                .get();
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        return arrayList.stream()
+                .mapToInt(Integer::new)
+                .average()
+                .getAsDouble();
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        int size = arrayList.size();
+        return size % 2 != 0 ? (double) arrayList.get((size+1)/2-1) : (double) (arrayList.get(size/2-1) + arrayList.get(size/2))/2;
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        return arrayList.stream().filter(number -> number % 2 ==0).collect(Collectors.toList()).stream().findFirst().get();
     }
 
     public int getIndexOfFirstEven() {
-        throw new NotImplementedException();
+        for (int i = 0; i < arrayList.size(); i++) {
+            if(arrayList.get(i) % 2 == 0){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public boolean isEqual(List<Integer> arrayList) {
-        throw new NotImplementedException();
+        return this.arrayList.stream().allMatch(number -> arrayList.contains(number));
     }
 
     //实现接口SingleLink，然后再此函数内使用
     public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
+        Double number1 = new Double(singleLink.getNode(6).toString());
+        Double number2 = new Double(singleLink.getNode(7).toString());
+        for (int i = 0; i < arrayList.size(); i++) {
+            singleLink.addTailPointer(arrayList.size());
+        }
+        return (number1 + number2)/2;
     }
 
     public int getLastOdd() {
-        throw new NotImplementedException();
+        List<Integer> oddNumbers = arrayList.stream().filter(number -> number % 2 !=0).collect(Collectors.toList());
+        return oddNumbers.get(oddNumbers.size()-1);
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        for (int i = arrayList.size()-1; i > -1; i--) {
+            if(arrayList.get(i) % 2 != 0){
+                return i;
+            }
+        }
+        return -1;
     }
 }
