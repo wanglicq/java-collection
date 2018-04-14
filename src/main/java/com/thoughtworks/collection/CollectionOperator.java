@@ -3,14 +3,16 @@ package com.thoughtworks.collection;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
-        if (left < right) {
-            return Stream.iterate(left, number -> number + 1).limit(right - left + 1).collect(Collectors.toList());
-        } else {
-            return Stream.iterate(left, number -> number - 1).limit(left - right + 1).collect(Collectors.toList());
+        if(left < right) {
+            return IntStream.rangeClosed(left, right).mapToObj(Integer::valueOf).collect(Collectors.toList());
+        }
+        else {
+            return IntStream.rangeClosed(right, left).mapToObj(Integer::valueOf).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
         }
     }
 
