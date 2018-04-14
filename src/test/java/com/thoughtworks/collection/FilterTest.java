@@ -37,7 +37,7 @@ public class FilterTest {
     }
 
     @Test
-    public void should_return_different_elements_in_arrayList() {
+    public void should_return_different_elements_in_arrayList() {//exercise
         //去除数组中的重复元素
         Integer[] array = new Integer[]{1, 1, 1, 2, 3};
         List<Integer> arrayList = Arrays.asList(array);

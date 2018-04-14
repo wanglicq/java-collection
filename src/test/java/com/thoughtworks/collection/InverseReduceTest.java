@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 public class InverseReduceTest {
 
     @Test
-    public void should_be_divided_to_smaller_number() {
+    public void should_be_divided_to_smaller_number() {//exercise
      //根据给定数字无限分割至等于0(提示：9-2=7,7-2=5 ...)
         Random random = mock(Random.class);
         when(random.nextInt(3)).thenReturn(2);

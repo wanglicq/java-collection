@@ -81,7 +81,7 @@ public class CollectionOperatorTest {
     }
 
     @Test
-    public void should_add_uncommon_elements_to_first_array() {
+    public void should_add_uncommon_elements_to_first_array() {//exercise
         // 将集合二中与集合一不同的元素加入集合一
         Integer[] firstArray = new Integer[]{1, 2, 4, 6, 10};
         Integer[] secondArray = new Integer[]{3, 2, 6, 10, 8};

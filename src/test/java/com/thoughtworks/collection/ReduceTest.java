@@ -108,7 +108,7 @@ public class ReduceTest {
     }
 
     @Test
-    public void should_return_index_of_last_even_element() {
+    public void should_return_index_of_last_even_element() {//exercise
         //获取数组中最后一个奇数的下标
         Integer[] array = new Integer[]{1, 4, 27, 20, 4, 9, 15, 4, 1, 11};
         List<Integer> arrayList = Arrays.asList(array);

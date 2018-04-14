@@ -66,7 +66,7 @@ public class MyMapTest {
     }
 
     @Test
-    public void should_sort_from_small_to_big() {
+    public void should_sort_from_small_to_big() {//exercise
         //从小到大排序
         Integer[] array = new Integer[]{3, 2, 4, 5, 1};
         List<Integer> list = Arrays.asList(array);
