@@ -54,13 +54,6 @@ public class Reduce {
     }
 
     public int getIndexOfLastOdd() {
-        /*for (int i = arrayList.size()-1; i > -1; i--) {
-            if(arrayList.get(i) % 2 != 0){
-                return i;
-            }
-        }
-        return -1;*/
-        List<Integer> oddList = arrayList.stream().filter(number -> number % 2 == 1).collect(Collectors.toList());
-        return arrayList.lastIndexOf(oddList.get(oddList.size() - 1));
+
     }
 }

@@ -36,10 +36,6 @@ public class CollectionOperator {
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
-        List<Integer> firstList = Stream.of(firstArray).collect(Collectors.toList());
-        List<Integer> secondList = Stream.of(secondArray).collect(Collectors.toList());
-        secondList.removeAll(firstList);
-        firstList.addAll(secondList);
-        return firstList;
+
     }
 }

@@ -9,13 +9,11 @@ public class Add {
 
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        return IntStream.rangeClosed(leftBorder, rightBorder).filter(number -> number % 2 == 0).sum()
-                + IntStream.rangeClosed(rightBorder, leftBorder).filter(number -> number % 2 ==0).sum();
+
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        return IntStream.rangeClosed(leftBorder, rightBorder).filter(number -> number % 2 == 1).sum()
-                + IntStream.rangeClosed(rightBorder, leftBorder).filter(number -> number % 2 == 1).sum();
+
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {

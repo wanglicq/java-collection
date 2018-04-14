@@ -58,7 +58,7 @@ public class MyMap {
     }
 
     public List<Integer> sortFromBig() {
-        return array.stream().sorted(Comparator.reverseOrder()).collect(toList());
+
     }
 
     public List<Integer> sortFromSmall() {
