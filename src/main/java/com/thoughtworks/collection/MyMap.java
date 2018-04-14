@@ -1,11 +1,9 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 public class MyMap {
 
@@ -19,44 +17,51 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        return array.stream()
-                .map(number -> number * 3)
-                .collect(Collectors.toList());
+        return array.stream().map(number -> number * 3).collect(toList());
     }
 
     public List<String> mapLetter() {
-        return array.stream()
-                .map(number -> letters[number-1])
-                .collect(Collectors.toList());
+        return array.stream().map(number -> letters[number-1]).collect(toList());
     }
 
     public List<String> mapLetters() {
-        return array.stream()
-                .map(number -> {
-                    if(number <= 26){
-                        return letters[number-1];
-                    }
-                    else {
-                        if(number % 26 == 0){
-                            return letters[number/26 - 2] + letters[25];
-                        }
-                        else {
-                            return letters[number/26-1] + letters[number%26-1];
-                        }
-                    }
-                })
-                .collect(Collectors.toList());
+        List<List<Integer>> collect = array.stream().map(x -> mapLettersHelper(x, newArrayList((x - 1) % 26))).collect(toList());
+        ArrayList<String> strings = new ArrayList<>();
+        for(List<Integer> list : collect){
+            String string = new String();
+            for(int i = list.size() - 1; i >= 0; i--){
+                string += letters[list.get(i)];
+            }
+            strings.add(string);
+        }
+        return strings;
+    }
+
+    private <T> List<T> newArrayList(T x) {
+        List<T> ts = new ArrayList<>();
+        ts.add(x);
+        return ts;
+    }
+
+    private List<Integer> mapLettersHelper(int number, List<Integer> results) {
+        int i = number / 26;
+        if(results.get(results.size() - 1) == 25){
+            i -= 1;
+        }
+        if (i > 26) {
+            results.add(0);
+            return mapLettersHelper(i, results);
+        } else if (i != 0) {
+            results.add(i - 1);
+        }
+        return results;
     }
 
     public List<Integer> sortFromBig() {
-        return array.stream()
-                .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
+        return array.stream().sorted(Comparator.reverseOrder()).collect(toList());
     }
 
     public List<Integer> sortFromSmall() {
-        return array.stream()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
+        return array.stream().sorted(Comparator.naturalOrder()).collect(toList());
     }
 }

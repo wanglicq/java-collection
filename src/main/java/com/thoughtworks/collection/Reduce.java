@@ -1,10 +1,8 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 public class Reduce {
@@ -16,22 +14,15 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        return arrayList.stream()
-                .max(Comparator.naturalOrder())
-                .get();
+        return arrayList.stream().max(Comparator.naturalOrder()).get();
     }
 
     public double getMinimum() {
-        return arrayList.stream()
-                .min(Comparator.naturalOrder())
-                .get();
+        return arrayList.stream().min(Comparator.naturalOrder()).get();
     }
 
     public double getAverage() {
-        return arrayList.stream()
-                .mapToInt(Integer::new)
-                .average()
-                .getAsDouble();
+        return arrayList.stream().mapToDouble(Double::new).average().getAsDouble();
     }
 
     public double getOrderedMedian() {
@@ -44,12 +35,7 @@ public class Reduce {
     }
 
     public int getIndexOfFirstEven() {
-        for (int i = 0; i < arrayList.size(); i++) {
-            if(arrayList.get(i) % 2 == 0){
-                return i;
-            }
-        }
-        return -1;
+        return arrayList.indexOf(arrayList.stream().filter(number -> number % 2 == 0).findFirst().get());
     }
 
     public boolean isEqual(List<Integer> arrayList) {
@@ -58,12 +44,8 @@ public class Reduce {
 
     //实现接口SingleLink，然后再此函数内使用
     public Double getMedianInLinkList(SingleLink singleLink) {
-        Double number1 = new Double(singleLink.getNode(6).toString());
-        Double number2 = new Double(singleLink.getNode(7).toString());
-        for (int i = 0; i < arrayList.size(); i++) {
-            singleLink.addTailPointer(arrayList.size());
-        }
-        return (number1 + number2)/2;
+        arrayList.stream().forEach(singleLink::addTailPointer);
+        return ((Integer) singleLink.getNode(6) + (Integer) singleLink.getNode(7)) / 2.0;
     }
 
     public int getLastOdd() {
@@ -72,11 +54,13 @@ public class Reduce {
     }
 
     public int getIndexOfLastOdd() {
-        for (int i = arrayList.size()-1; i > -1; i--) {
+        /*for (int i = arrayList.size()-1; i > -1; i--) {
             if(arrayList.get(i) % 2 != 0){
                 return i;
             }
         }
-        return -1;
+        return -1;*/
+        List<Integer> oddList = arrayList.stream().filter(number -> number % 2 == 1).collect(Collectors.toList());
+        return arrayList.lastIndexOf(oddList.get(oddList.size() - 1));
     }
 }

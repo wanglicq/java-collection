@@ -1,6 +1,5 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -8,30 +7,19 @@ import java.util.stream.Stream;
 
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
-        int min = left < right ? left : right;
-        int max = left < right ? right : left;
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = min; i <= max; i++) {
-            numbers.add(i);
+        if (left < right) {
+            return Stream.iterate(left, number -> number + 1).limit(right - left + 1).collect(Collectors.toList());
+        } else {
+            return Stream.iterate(left, number -> number - 1).limit(left - right + 1).collect(Collectors.toList());
         }
-        return left < right ? numbers.stream().sorted().collect(Collectors.toList()) : numbers.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
-        List<Integer> numbers = getListByInterval(left, right);
-        return numbers.stream()
-                .filter(number -> number % 2 == 0 )
-                .collect(Collectors.toList());
+        return getListByInterval(left, right).stream().filter(number -> number % 2 == 0).collect(Collectors.toList());
     }
 
     public List<Integer> popEvenElments(int[] array) {
-        List<Integer> evenElements = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
-                evenElements.add(array[i]);
-            }
-        }
-        return evenElements;
+        return Arrays.stream(array).filter(number -> number % 2 == 0).mapToObj(Integer::valueOf).collect(Collectors.toList());
     }
 
     public int popLastElment(int[] array) {
