@@ -56,13 +56,6 @@ public class Add {
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        /*List<Integer> newList = new ArrayList<>();
-        arrayList.stream().reduce((a,b)->{
-            newList.add((a+b)*3);
-            return b;
-        });
-        return newList;*/
-
         List<Integer> newList = arrayList.stream().skip(1).collect(Collectors.toList());
         for (int i = 0; i < newList.size(); i++){
             newList.set(i, (arrayList.get(i) + newList.get(i)) * 3);
