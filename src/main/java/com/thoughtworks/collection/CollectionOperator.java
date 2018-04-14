@@ -29,14 +29,8 @@ public class CollectionOperator {
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-        List<Integer> firstList = new ArrayList<>();
-        List<Integer> secondList = new ArrayList<>();
-        for (int element : firstArray) {
-            firstList.add(element);
-        }
-        for (int element : secondArray) {
-            secondList.add(element);
-        }
+        List<Integer> firstList = Arrays.stream(firstArray).mapToObj(Integer::valueOf).collect(Collectors.toList());
+        List<Integer> secondList = Arrays.stream(secondArray).mapToObj(Integer::valueOf).collect(Collectors.toList());
         firstList.retainAll(secondList);
         return firstList;
     }

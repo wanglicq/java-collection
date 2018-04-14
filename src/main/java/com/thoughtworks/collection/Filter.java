@@ -26,12 +26,6 @@ public class Filter {
     }
 
     public List<Integer> getDifferentElements() {
-        List<Integer> result = new ArrayList<>();
-        array.stream().forEach(number -> {
-            if(!result.contains(number)){
-                result.add(number);
-            }
-        });
-        return  result;
+        return array.stream().distinct().collect(Collectors.toList());
     }
 }
