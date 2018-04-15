@@ -1,6 +1,8 @@
 package com.thoughtworks.collection;
 
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
@@ -58,7 +60,7 @@ public class MyMap {
     }
 
     public List<Integer> sortFromBig() {
-
+        throw new NotImplementedException();
     }
 
     public List<Integer> sortFromSmall() {

@@ -1,6 +1,8 @@
 package com.thoughtworks.collection;
 
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,11 +11,11 @@ public class Add {
 
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-
+        throw new NotImplementedException();
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-
+        throw new NotImplementedException();
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
