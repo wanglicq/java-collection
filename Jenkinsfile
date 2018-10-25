@@ -8,7 +8,7 @@ pipeline {
         }
         stage('test'){
             steps {
-                sh './gradlew test'
+                sh './gradlew test jacocoTestReport'
             }
         }
     }
